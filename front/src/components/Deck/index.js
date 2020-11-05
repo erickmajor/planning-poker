@@ -1,7 +1,9 @@
-import './Deck.css';
-import Card from './Card.js';
-import { useState, useEffect } from 'react';
-import Client from './Client.js';
+import { React, useState, useEffect } from 'react';
+
+import Card from '../../components/Card';
+import socket from '../../services/socket';
+
+import './styles.css';
 
 function Deck () {
   const [ cards, setCards ] = useState([
@@ -12,10 +14,14 @@ function Deck () {
     { value: '5', active: 0 },
     { value: '8', active: 0 },
     { value: '13', active: 0 },
+    { value: '21', active: 0 },
+    { value: '34', active: 0 },
+    { value: '55', active: 0 },
+    { value: '89', active: 0 },
     { value: '?', active: 0 }
   ]);
   const select = value => {
-    Client.emit('select-card', value);
+    socket.emit('select-card', value);
 
     setCards(cards.map(card => {
       card.active = card.value === value;
@@ -24,7 +30,7 @@ function Deck () {
   };
 
   useEffect(() => {
-    Client.on('reset-game', () => {
+    socket.on('reset-game', () => {
       setCards(cards.map(card => {
         card.active = 0;
         return card;
