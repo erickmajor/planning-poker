@@ -1,12 +1,13 @@
-import './Players.css';
-import Player from './Player.js';
-import Client from './Client.js';
+import Player from '../../components/Player';
+import socket from '../../services/socket';
+
+import './styles.css';
 
 function Players(props) {
 
   const players = props.players;
   const showCard = !players.filter(player => player.value < 0).length;
-  const opponents = players.filter(player => player.id !== Client.id);
+  const opponents = players.filter(player => player.id !== socket.id);
 
   return (
     <div className="Players">
@@ -18,4 +19,3 @@ function Players(props) {
 }
 
 export default Players;
-
