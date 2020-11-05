@@ -1,0 +1,56 @@
+.Game {
+    border-radius: 1em;
+    background: #e6e6e6;
+    padding: 1em;
+    color: rgb(66, 66, 66);
+    transform: scale(0);
+    z-index: 9;
+    position: fixed;
+    bottom: 12rem;
+    max-width: 60vw;
+  }
+  .Game.init {
+    animation: Game-splash forwards .4s ease-in;
+    animation-delay: 1s;
+  }
+  .Game.done {
+    animation: Game-splash forwards .4s ease-in;
+    animation-delay: 1s;
+  }
+  .Game :first-child {
+    margin-top: .2em;
+  }
+  .Game form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .Game p {
+    flex: 100%;
+  }
+  .Game input,
+  .Game button {
+    border: none;
+    border-radius: 1em;
+    padding: 1em;
+  }
+  .Game input {
+    color: rgb(66, 66, 66);
+    flex: 9999;
+  }
+  .Game button {
+    background: rgb(4, 90, 4);
+    color: #efefef;
+    font-weight: bold;
+    flex: 1;
+  }
+
+  @keyframes Game-splash {
+    from {
+      transform: scale(6);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1.4);
+      opacity: 1;
+    }
+  }

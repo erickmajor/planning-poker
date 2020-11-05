@@ -1,6 +1,7 @@
-import './Game.css';
-import Client from './Client.js';
 import { useEffect, useState } from 'react';
+import socket from '../../services/socket';
+
+import './styles.css';
 
 function Game(props) {
 
@@ -8,14 +9,14 @@ function Game(props) {
   const [ state, setState ] = useState('init');
 
   const resetGame = e => {
-    Client.emit('reset-game');
+    socket.emit('reset-game');
     setState('playing');
     e.preventDefault();
   }
 
   const submitName = e => {
     if (name !== '') {
-      Client.emit('set-name', name);
+      socket.emit('set-name', name);
       setState('playing');
     }
     e.preventDefault();
@@ -29,7 +30,7 @@ function Game(props) {
   }
 
   useEffect(() => {
-    Client.on('reset-game', () => {
+    socket.on('reset-game', () => {
       setState('playing');
     })
   }, []);
