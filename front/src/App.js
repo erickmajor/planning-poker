@@ -1,16 +1,18 @@
-import './App.css';
-import Deck from './Deck.js';
-import Players from './Players.js';
-import { useEffect, useState } from 'react';
-import Client from './Client.js';
-import Game from './Game.js';
+import React, { useEffect, useState } from 'react';
+
+import Deck from './components/Deck';
+import Players from './components/Players';
+import Game from './components/Game';
+import socket from './services/socket';
+
+import './styles.css';
 
 function App() {
 
   const [ players, setPlayers ] = useState([]);
 
   useEffect(() => {
-    Client.on("players-update", data => {
+    socket.on("players-update", data => {
       setPlayers(data.players);
     });
   }, []);
