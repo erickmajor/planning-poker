@@ -1,50 +1,66 @@
-import { React, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 
+import Player from '../../components/Player';
 import Card from '../../components/Card';
 import socket from '../../services/socket';
 
 import './styles.css';
 
-function Deck () {
-  const [ cards, setCards ] = useState([
-    { value: '0', active: 0 },
-    { value: '1', active: 0 },
-    { value: '2', active: 0 },
-    { value: '3', active: 0 },
-    { value: '5', active: 0 },
-    { value: '8', active: 0 },
-    { value: '13', active: 0 },
-    { value: '21', active: 0 },
-    { value: '34', active: 0 },
-    { value: '55', active: 0 },
-    { value: '89', active: 0 },
-    { value: '?', active: 0 }
-  ]);
-  const select = value => {
-    socket.emit('select-card', value);
+export default class Deck extends Component {
+  static defaultProps = {
+      values: []
+  }
 
-    setCards(cards.map(card => {
-      card.active = card.value === value;
-      return card;
-    }));
+  state = {
+    player: {},
+    cards: []
   };
 
-  useEffect(() => {
-    socket.on('reset-game', () => {
-      setCards(cards.map(card => {
-        card.active = 0;
-        return card;
-      }));
-    })
-  }, ['cards']);
+  importAll = r => r.keys().map(r);
 
-  return (
-    <div className="Deck">
-      {cards.map(card =>
-        <Card key={card.value} value={card.value} active={card.active} onActivate={select} />
-      )}
-    </div>
-  );
+  getAllAvatars = () => this.importAll(require.context('../../avatars/', false, /\.(png|jpe?g|svg)$/));
+
+  createPlayerStructure = () => {
+    const avatars = this.getAllAvatars();
+    const sortedImage = Math.floor(Math.random() * avatars.length);
+
+    this.setState({ player: {
+      id: socket.id,
+      avatar: avatars[ sortedImage ].default,
+      nome: 'Anonymous',
+    }});
+  };
+
+  createCardStructure = () => {
+    // const { values } = this.props;
+    const values = ['0', '1', '2', '3', '5', '8', '13', '21', '34', '55', '89', '?', ];
+
+    const cards = values.map(value => {
+      return {id: value, value};
+    });
+
+    this.setState({ cards });
+  };
+
+  componentWillMount() {
+    this.createPlayerStructure();
+    this.createCardStructure();
+  }
+
+  render() {
+    // Destructuring the state to get only our important data to us.
+    const { player, cards } = this.state;
+
+    return (
+      <div className="deck">
+        <Player key={player.id} id={player.id} avatar={player.avatar} value={player.value} name={player.name} />
+        <div className="hand">
+        {cards.map(card =>
+          // <Card key={card.value} value={card.value} active={card.active} onActivate={select} />
+          <Card key={card.value} id={card.id} value={card.value} />
+        )}
+        </div>
+      </div>
+    );
+  }
 }
-
-export default Deck;
