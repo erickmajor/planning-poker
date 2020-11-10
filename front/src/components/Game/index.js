@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import socket from '../../services/socket';
 
 import './styles.css';
@@ -36,12 +36,14 @@ function Game(props) {
   }, []);
 
   const screens = {
-    'init': <form onSubmit={submitName}>
+    'init':
+      <form onSubmit={submitName}>
         <p>Enter your name</p>
         <input value={name} onChange={e => setName(e.target.value)}></input>
         <button onClick={submitName}>Go</button>
       </form>,
-    'done': <form>
+    'done':
+      <form>
         <p>Game done!</p>
         <button onClick={resetGame}>Play again</button>
       </form>
