@@ -1,49 +1,55 @@
-.Player {
-    width: 10em;
-    text-align: center;
-    vertical-align: bottom;
-    opacity: .5;
-    position: relative;
-  }
-  .Player.done {
-    opacity: .2;
-  }
-  .Player .Name {
-    font-size: 1.4em;
-    margin: .5em 0;
-  }
-  .Player small {
-    font-size: .4em;
-    display: block;
-  }
-  .Player img {
-    width: 80%;
-  }
-  .Player .Card {
-    position: absolute;
-    right: 0;
-    top: 5em;
-  }
-  @keyframes Player-show-card {
-    from {
-      transform: scale(.2);
-    }
-    to {
-      transform: scale(.6);
-    }
-  }
+.player {
+  width: 10em;
+  text-align: center;
+  vertical-align: bottom;
+  opacity: .5;
+  position: relative;
+}
 
-  @keyframes Card-balance {
-    from {
-      transform: rotate(0deg);
-      transform: translateY(0);
-    }
-    50% {
-      transform: rotate(3deg);
-      transform: translateY(-10px);
-    }
-    to {
-      transform: rotate(0);
-      transform: translateY(0);
-    }
+.player.done {
+  opacity: .2;
+}
+
+.player .name {
+  font-size: 1.4em;
+  margin: .5em 0;
+}
+
+.player small {
+  font-size: .4em;
+  display: block;
+}
+
+.player img {
+  width: 80%;
+}
+
+.player .card {
+  position: absolute;
+  right: 0;
+  top: 5em;
+}
+
+@keyframes Player-show-card {
+  from {
+    transform: scale(.2);
   }
+  to {
+    transform: scale(.6);
+  }
+}
+
+@keyframes Card-balance {
+  from {
+    transform: rotate(0deg);
+    transform: translateY(0);
+  }
+  50% {
+    transform: rotate(3deg);
+    transform: translateY(-10px);
+  }
+  to {
+    transform: rotate(0);
+    transform: translateY(0);
+  }
+}

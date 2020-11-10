@@ -1,31 +1,41 @@
-import React from 'react';
-
-import Card from '../../components/Card';
-import Veia from "../../avatars/veia.svg";
-import Gordo from "../../avatars/gordo.svg";
+/* */
+import React, { Component } from 'react';
 
 import './styles.css';
+import baseAvatar from './images/user.png';
 
-const avatar = type => {
-    const avatars = {
-      'veia': Veia,
-      'gordo': Gordo
-    };
-    return avatars[type];
+export default class Player extends Component {
+  static defaultProps = {
+    name: 'Anonymous',
+    avatar: baseAvatar
   }
 
-  function Player(props) {
-    const done =  !props.showCard && props.value >= 0 ? 'Player done' : 'Player';
+  state = {
+    id: '',
+    name: '',
+    avatar: ''
+  };
+
+  componentDidMount() {
+    const { avatar, name } = this.props;
+
+    this.setState({ avatar, name });
+  }
+
+  render() {
+    // Destructuring the state to get only our important data to us.
+    const { id, name, avatar } = this.state;
 
     return (
-      <div className={done}>
-        <span className="Avatar">
-          <img src={avatar(props.avatar)} alt={props.name} />
+      <div className="player">
+        <span className="avatar">
+          <img src={avatar} alt={id} />
         </span>
-        <p className="Name">{props.name}<small>{props.id}</small></p>
-        { props.showCard ? <Card value={props.value} active={true} /> : '' }
+        <p className="name">
+          {name}
+          <small>{id}</small>
+        </p>
       </div>
     );
   }
-
-  export default Player;
+}
