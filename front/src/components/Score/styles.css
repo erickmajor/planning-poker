@@ -1,0 +1,21 @@
+.score-value {
+  color: rgb(54, 173, 17);
+  margin-block-start: .2em;
+  font: 3em 'Courier New', Courier, monospace;
+  vertical-align: middle;
+  text-shadow: .025em .025em rgba(0,0,0,.5);
+}
+
+.score {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  background-color: #000;
+  justify-content: center;
+  vertical-align: middle;
+  border-radius: 5px;
+  width: 10em;
+  height: 5em;
+  box-shadow: .2em .2em 1em rgba(0,0,0,.5);
+}
