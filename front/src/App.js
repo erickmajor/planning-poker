@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import Score from './components/Score';
 import Deck from './components/Deck';
-import Players from './components/Players';
 import Game from './components/Game';
 import socket from './services/socket';
 
@@ -19,8 +19,8 @@ function App() {
 
   return (
     <div className="App">
+      <Score />
       <Game players={players} />
-      <Players players={players} />
       <Deck/>
     </div>
   );
