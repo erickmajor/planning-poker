@@ -1,0 +1,56 @@
+.main-page {
+  border-radius: 1em;
+  background: #e6e6e6;
+  padding: 1em;
+  color: rgb(66, 66, 66);
+  transform: scale(0);
+  z-index: 9;
+  position: fixed;
+  bottom: 12rem;
+  max-width: 60vw;
+  animation: name-splash forwards .4s ease-in;
+  animation-delay: 1s;
+}
+
+.main-page :first-child {
+  margin-top: .2em;
+}
+
+.main-page form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-page p {
+  flex: 100%;
+}
+
+.main-page input,
+.main-page button {
+  border: none;
+  border-radius: 1em;
+  padding: 1em;
+}
+
+.main-page input {
+  color: rgb(66, 66, 66);
+  flex: 9999;
+}
+
+.main-page button {
+  background: rgb(4, 90, 4);
+  color: #efefef;
+  font-weight: bold;
+  flex: 1;
+}
+
+@keyframes name-splash {
+  from {
+    transform: scale(6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+}
