@@ -1,27 +1,16 @@
-import './App.css';
-import Deck from './Deck.js';
-import Players from './Players.js';
-import { useEffect, useState } from 'react';
-import Client from './Client.js';
-import Game from './Game.js';
+import React from 'react';
+import Routes from "./routes";
 
-function App() {
+import "./styles.css";
 
-  const [ players, setPlayers ] = useState([]);
+import Header from "./components/Header";
 
-  useEffect(() => {
-    Client.on("players-update", data => {
-      setPlayers(data.players);
-    });
-  }, []);
-
-  return (
-    <div className="App">
-      <Game players={players} />
-      <Players players={players} />
-      <Deck/>
-    </div>
-  );
-}
+// Stateless components
+const App = () => (
+  <div className="App">
+    <Header />
+    <Routes />
+  </div>
+);
 
 export default App;
