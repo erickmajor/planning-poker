@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
 import "./styles.css";
@@ -6,23 +6,28 @@ import "./styles.css";
 import Page from '../../components/Page';
 import Client from '../../Client.js';
 
-export default class Main extends COmponent {
+export default class Main extends Component {
+  state = {
+    name: ''
+  };
 
-  const submitName = e => {
+  submitName = name => {
     if (name !== '') {
       Client.emit('set-name', name);
-      // setState('playing');
+      this.setState({ name });
     }
-    e.preventDefault();
   }
 
   render () {
+    // Destructuring the state to get only our important data to us.
+    const { name } = this.state;
+
     return (
       <Page id="main">
-        <form onSubmit={submitName}>
+        <form onSubmit={this.submitName}>
           <p>Enter your name</p>
-          <input value={name} onChange={e => setName(e.target.value)} />
-          <button onClick={submitName}>Go</button>
+          <input type="text" value={name} onChange={e => this.setState({ name: e.target.value })} />
+          <button onClick={this.submitName}>Go</button>
         </form>
       </Page>
     );
