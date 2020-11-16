@@ -1,29 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Routes from "./routes";
 
-import Score from './components/Score';
-import Deck from './components/Deck';
-import Game from './components/Game';
-import socket from './services/socket';
+import "./styles.css";
 
-import './styles.css';
+import Header from "./components/Header";
 
-function App() {
-
-  const [ players, setPlayers ] = useState([]);
-
-  useEffect(() => {
-    socket.on("players-update", data => {
-      setPlayers(data.players);
-    });
-  }, []);
-
-  return (
-    <div className="App">
-      <Score />
-      <Game players={players} />
-      <Deck/>
-    </div>
-  );
-}
+// Stateless components
+const App = () => (
+  <div className="App">
+    <Header />
+    <Routes />
+  </div>
+);
 
 export default App;

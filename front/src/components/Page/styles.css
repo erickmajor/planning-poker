@@ -1,0 +1,98 @@
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+p, input, button, form {
+  font-size: 1em;
+}
+
+div, input, button {
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+}
+
+.page {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2vw;
+}
+
+.modal {
+  border-radius: 1em;
+  background: #e6e6e6;
+  padding: 1em;
+  color: rgb(66, 66, 66);
+  transform: scale(0);
+  z-index: 9;
+  position: fixed;
+  bottom: 12rem;
+  max-width: 60vw;
+  animation: modal-splash forwards .4s ease-in;
+  animation-delay: 1s;
+}
+
+.modal :first-child {
+  margin-top: .2em;
+}
+
+.modal form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.modal p {
+  flex: 100%;
+}
+
+.modal input,
+.modal button {
+  border: none;
+  border-radius: 1em;
+  padding: 1em;
+}
+
+.modal input {
+  color: rgb(66, 66, 66);
+  flex: 9999;
+}
+
+.modal button {
+  background: rgb(4, 90, 4);
+  color: #efefef;
+  font-weight: bold;
+  flex: 1;
+}
+
+@media (min-width: 800px) {
+  .app {
+    font-size: 1em;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes modal-splash {
+  from {
+    transform: scale(6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
