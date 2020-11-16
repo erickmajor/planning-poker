@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import "./styles.css";
 
 export default class Page extends Component {
+  static defaultProps = {
+    type: ''
+  }
+
   render() {
     return (
       <div className="page">
