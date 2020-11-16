@@ -46,9 +46,14 @@ function Game(props) {
       </form>
   }
   return (
+    <div className={`Game playing`}>
+      {screens[state]}
+    </div>
+    /*
     <div className={`Game ${state}`}>
       {screens[state]}
     </div>
+    */
   );
 }
 
